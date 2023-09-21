@@ -22,9 +22,10 @@ def text_to_audio(body:TextToAudioBody, access_token:str=Depends(get_access_toke
     total_duration:int = 0
     for text_info in body.texts:
         try:
-            # print(text_info.text)
-            audio = azure_text_to_audio(text_info.text, access_token, text_info.voice_gender)
-
+            print("text = ",text_info.text)
+            audio = azure_text_to_audio(text_info.text, access_token,text_info.language, text_info.voice_gender)
+            if len(audio)==0:
+                continue
             compressed_audio = zlib.compress(audio)
             compressed_audio_data = base64.b64encode(compressed_audio).decode("utf-8")
             

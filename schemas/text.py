@@ -2,12 +2,14 @@ from pydantic import BaseModel
 from typing import List
 # import hashlib
 
+
 class TextInfo(BaseModel):
     """
     Single Text Info for text to audio
     """
     text:str
     voice_gender:str
+    language:str
 
 
 class TextToAudioBody(BaseModel):
