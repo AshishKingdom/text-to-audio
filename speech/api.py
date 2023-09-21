@@ -15,12 +15,12 @@ def azure_text_to_audio(text:str, access_token:str, lang:str="english", gender:s
     }
 
     lang = language_mapping[lang.lower()]
-    print("jfjfjf", language_models[lang])
+    print("Available Models : ", language_models[lang])
     if gender.lower()=="male":
         voice_actor_name = language_models[lang]['male']
     else:
         voice_actor_name = language_models[lang]['female']
-    print('voice_actor_name', voice_actor_name)
+    print('voice_actor_name : ', voice_actor_name)
     speech_config = {
         "version":"1.0",
         "xml:lang":lang,
@@ -45,6 +45,7 @@ def azure_text_to_audio(text:str, access_token:str, lang:str="english", gender:s
                             )
     
     if response.status_code==200:
+        print("Audio response received from azure")
         return response.content
     else:
         raise Exception("Failed to convert text to audio ", response.status_code, response.text)

@@ -25,13 +25,16 @@ def text_to_audio(body:TextToAudioBody, access_token:str=Depends(get_access_toke
             print("text = ",text_info.text)
             audio = azure_text_to_audio(text_info.text, access_token,text_info.language, text_info.voice_gender)
             if len(audio)==0:
+                print("No Audio returned from azure")
                 continue
             compressed_audio = zlib.compress(audio)
+            print("Audio Compressed")
             compressed_audio_data = base64.b64encode(compressed_audio).decode("utf-8")
-            
+            print("Audio Encoded to base64")
+            print("Reading Audio to get duration")
             ogg_audio, sample_rate = sf.read(BytesIO(audio))
             duration:int = len(ogg_audio)//sample_rate
-            
+            print("Audio Duration = ", duration, " seconds")
             audio_list.append({
                 "duration": duration,
                 "data": compressed_audio_data
