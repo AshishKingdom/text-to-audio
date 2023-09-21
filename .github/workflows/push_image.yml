@@ -15,10 +15,10 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t ashishkingdom/TTV-Service:latest .
+          docker build -t ashishkingdom/ttv-service:latest .
 
       - name: Login to Docker Hub
         run: docker login -u "ashishkingdom" -p "${{ secrets.DOCKERHUB_PASSWORD }}"
 
       - name: Push Docker image to Docker Hub
-        run: docker push ashishkingdom/TTV-Service:latest
+        run: docker push ashishkingdom/ttv-service:latest
