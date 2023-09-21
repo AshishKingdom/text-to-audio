@@ -31,6 +31,8 @@ def text_to_audio(body:TextToAudioBody, access_token:str=Depends(get_access_toke
             print("Audio Compressed")
             compressed_audio_data = base64.b64encode(compressed_audio).decode("utf-8")
             print("Audio Encoded to base64")
+            print("Audio Data = \n ", compressed_audio_data)
+            print("------------------------------------")
             print("Reading Audio to get duration")
             ogg_audio, sample_rate = sf.read(BytesIO(audio))
             duration:int = len(ogg_audio)//sample_rate

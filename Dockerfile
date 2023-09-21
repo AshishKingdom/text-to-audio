@@ -1,8 +1,6 @@
-FROM python:3.10-alpine
+FROM python:3.10-bullseye
 
 WORKDIR /usr/local/src
-
-RUN apk add libsndfile-dev
 
 COPY requirements.txt .
 
