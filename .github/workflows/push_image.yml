@@ -1,0 +1,24 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        run: |
+          docker build -t ashishkingdom/TTV-Service:latest .
+
+      - name: Login to Docker Hub
+        run: docker login -u "ashishkingdom" -p "${{ secrets.DOCKERHUB_PASSWORD }}"
+
+      - name: Push Docker image to Docker Hub
+        run: docker push ashishkingdom/TTV-Service:latest
