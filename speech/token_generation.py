@@ -7,7 +7,7 @@ def get_access_token()->str:
                              headers={"Ocp-Apim-Subscription-Key":Settings.SPEECH_KEY}
                              )
     if response.status_code==200:
-        print("access token = ", response.text)
+        print("access token granted")
         return response.text
     else:
         raise Exception("Failed to get access token for speech api", response.status_code, response.text)

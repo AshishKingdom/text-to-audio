@@ -7,16 +7,18 @@ class TextInfo(BaseModel):
     """
     Single Text Info for text to audio
     """
-    text:str
-    voice_gender:str
-    language:str
+    text:str = "This is a test string"
+    voice_gender:str = "female"
+    language:str = "english"
+    style:str = "documentary-narration"
+    speed:str = "+0.00%" 
 
 
 class TextToAudioBody(BaseModel):
     """
     Body for text to audio request
     """
-    count:int
+    count:int=1
     texts:List[TextInfo]
 
 
